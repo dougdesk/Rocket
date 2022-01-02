@@ -1,0 +1,47 @@
+Create table Estados (
+	EstadoId	int primary key identity,
+	Nome varchar(50) not null,
+	Sigla varchar(2) not null
+)
+
+create table Empresas(
+	EmpresaId int primary key identity,
+	EstadoId int foreign key(EstadoId) references Estados(EstadoId),
+	RazaoSocial varchar(100) not null,
+	NomeFantasia varchar(100) not null,
+	CNPJ varchar(18) not null,
+	InscricaoMunicipal varchar(15),
+	EmailContato varchar(100) not null,
+	CEP varchar(9) not null,
+	Logradouro varchar(100) not null,
+	Numero varchar(30) not null,
+	Bairro varchar(50) not null,
+	Complemento varchar(30),
+	Cidade varchar(100) not null
+)
+
+create table Usuarios (
+	UsuarioId int primary key identity,
+	EmpresaId int foreign key(EmpresaId) references Empresas(EmpresaId),
+	Nome varchar(100) not null,
+	Sobrenome varchar(100) not null,
+	Email varchar(100) not null,
+	Senha varchar(max) not null,
+	BloqueioTemporario datetime2,
+	Bloqueio bit not null,
+	TimeZone varchar(6) not null,
+
+)
+
+Create Table UsuariosTokens(
+
+	UsuarioTokenId int primary key identity,
+	UsuarioID int foreign key(UsuarioID) references Usuarios(UsuarioID),
+	TipoToken varchar(50) not null,
+	Token varchar(36) not null,
+	Ativo bit not null
+)
+
+	select Len('BFEA514F-58AE-4A3A-A41C-FE8F425D335E')
+
+	select newid()
